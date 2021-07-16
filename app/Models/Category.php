@@ -24,4 +24,10 @@ class Category extends Model
         'user_id',
         'category_name'
     ];
+
+    // リレーション
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
