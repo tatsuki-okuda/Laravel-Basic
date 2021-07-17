@@ -80,6 +80,13 @@ class BrandController extends Controller
     }
 
 
+    /**
+     * Brand Update
+     *
+     * @param Request $request
+     * @param [type] $id
+     * @return void
+     */
     public function Update(Request $request, $id)
     {
         $validated = $request->validate([
@@ -119,9 +126,21 @@ class BrandController extends Controller
 
         return Redirect()
                 ->back()
-                ->with('success', 'Brand Inserted Succesfully');
+                ->with('success', 'Brand Inserted Succesfully');        
+    }
 
+
+    public function Delete($id)
+    {
+        $brand =  Brand::find($id);
+        $old_image = $brand->brand_image;
+        unlink($old_image);
+
+        $brand->delete();
         
+        return Redirect()
+                ->back()
+                ->with('success', 'Brand Deleted Succesfully');    
     }
 
 }
