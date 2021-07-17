@@ -56,3 +56,5 @@ Route::get('/pdelete/restore/{id}', [CategoryController::class, 'Pdelete']);
 // Brand
 Route::get('/cbrand/all', [BrandController::class, 'AllBrand'])
     ->name('all.brand');
+Route::post('/brand/add', [BrandController::class, 'StoreBrnad'])
+    ->name('store.brand');

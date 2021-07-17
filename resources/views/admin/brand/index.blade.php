@@ -38,7 +38,7 @@
                         <th scope="row">{{ $brands->firstItem()+$loop->index }}</th>
                         <td>{{ $brand->brand_name }}</td>
                         <td>
-                          <img src="" alt="">
+                          <img src="{{ asset($brand->brand_image) }}" style="height: 40px; width: 40px;" alt="{{ $brand->brand_name }}">
                         </td>
                         <td>
                           @if ($brand->created_at === NULL)
@@ -67,7 +67,7 @@
                 <div class="card-header">Add Brand</div>
                 <div class="card-body">
 
-                  <form action="{{ route('store.category') }}" method="POST">
+                  <form action="{{ route('store.brand') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
