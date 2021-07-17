@@ -8,7 +8,11 @@ use Illuminate\Support\Carbon;
 
 class BrandController extends Controller
 {
-    
+    /**
+     * brand index
+     *
+     * @return void
+     */
     public function AllBrand()
     {
         $brands = Brand::latest()->paginate(5);
@@ -16,6 +20,13 @@ class BrandController extends Controller
     }
 
 
+    /**
+     * add new Brand
+     * 画像のアップロード
+     *
+     * @param Request $request
+     * @return void
+     */
     public function StoreBrnad(Request $request)
     {
         $validated = $request->validate([
@@ -52,6 +63,65 @@ class BrandController extends Controller
          return Redirect()
             ->back()
             ->with('success', 'Brand Inserted Succesfully');
+    }
+
+
+
+    /**
+     * Brand Edit
+     *
+     * @param [type] $id
+     * @return void
+     */
+    public function Edit($id)
+    {
+        $brand = Brand::find($id);
+        return view('admin.brand.edit', compact('brand'));
+    }
+
+
+    public function Update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'brand_name' => 'min:4',
+            'brand_image' => 'mimes:jpg,png,jpeg',
+        ], [
+            // エラーメッセージをアレンジできる。
+            'brand_name.required' => 'Please Input Brand Name',
+            'brand_name.min' => 'brand longer then 4Chars',
+        ]);
+
+        // hiddenで入れた古いファイル名を取得する。
+        $old_image = $request->old_image;
+        $brand_image = $request->file('brand_image');
+
+        if($brand_image){
+            $name_gen = hexdec(uniqid());
+            $img_ext = strtolower($brand_image->getClientOriginalExtension());
+            $img_name = $name_gen.'.'.$img_ext;
+            $up_location = 'image/brand/';
+            $last_img = $up_location.$img_name;
+            $brand_image->move($up_location, $img_name);
+
+            unlink($old_image);
+            Brand::find($id)->update([
+                'brand_name' => $request->brand_name,
+                'brand_image' => $last_img,
+                'created_at' => Carbon::now()
+            ]);
+
+        } else {
+            Brand::find($id)->update([
+                'brand_name' => $request->brand_name,
+                'created_at' => Carbon::now()
+            ]);
+        }
+
+        return Redirect()
+                ->back()
+                ->with('success', 'Brand Inserted Succesfully');
+
+        
     }
 
 }
