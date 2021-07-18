@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Image;
 
 class BrandController extends Controller
 {
@@ -41,18 +42,26 @@ class BrandController extends Controller
         // ファイルを取り出すときはfileメソッドを使用
         $brand_image = $request->file('brand_image');
 
-        // uniqid() 一位なID
-        // hexdec 16 進数を 10 進数に変換する
-        $name_gen = hexdec(uniqid());
-        // ファイル拡張し
-        $img_ext = strtolower($brand_image->getClientOriginalExtension());
-        // ファイル名を作成
-        $img_name = $name_gen.'.'.$img_ext;
+        // デフォルトで画像を保存する場合
+        // // uniqid() 一位なID
+        // // hexdec 16 進数を 10 進数に変換する
+        // $name_gen = hexdec(uniqid());
+        // // ファイル拡張し
+        // $img_ext = strtolower($brand_image->getClientOriginalExtension());
+        // // ファイル名を作成
+        // $img_name = $name_gen.'.'.$img_ext;
 
         $up_location = 'image/brand/';
-        $last_img = $up_location.$img_name;
-        // 指定のファイルに移動させる。
-        $brand_image->move($up_location, $img_name);
+        // $last_img = $up_location.$img_name;
+        // // 指定のファイルに移動させる。
+        // $brand_image->move($up_location, $img_name);
+
+        // ライブラリを使ってリサイズを行う場合
+        $name_gen = hexdec(uniqid()).'.'.$brand_image->getClientOriginalExtension();
+        $last_img = $up_location.$name_gen;
+        Image::make($brand_image)->resize(300, 200)->save($last_img);
+
+
 
         Brand::insert([
             'brand_name' => $request->brand_name,
@@ -137,7 +146,7 @@ class BrandController extends Controller
         unlink($old_image);
 
         $brand->delete();
-        
+
         return Redirect()
                 ->back()
                 ->with('success', 'Brand Deleted Succesfully');    
