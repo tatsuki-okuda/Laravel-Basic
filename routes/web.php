@@ -25,7 +25,7 @@ Route::get('/email/verify', function () {
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::get('/home', function () {
@@ -80,3 +80,6 @@ Route::get('/multi/image', [BrandController::class, 'MultiPic'])
     ->name('multi.image');
 Route::post('/multi/add', [BrandController::class, 'StoreImg'])
     ->name('store.image');
+
+
+
