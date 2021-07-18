@@ -42,8 +42,10 @@ Route::get('/contact', [ContactController::class, 'index'])
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     // $users = User::all();
-    $users = DB::table('users')->get();
-    return view('dashboard', compact('users'));
+    // $users = DB::table('users')->get();
+    // return view('dashboard', compact('users'));
+
+    return view('admin.index');
 })->name('dashboard');
 
 
