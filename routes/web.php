@@ -54,10 +54,17 @@ Route::get('/pdelete/restore/{id}', [CategoryController::class, 'Pdelete']);
 
 
 // Brand
-Route::get('/cbrand/all', [BrandController::class, 'AllBrand'])
+Route::get('/brand/all', [BrandController::class, 'AllBrand'])
     ->name('all.brand');
 Route::post('/brand/add', [BrandController::class, 'StoreBrnad'])
     ->name('store.brand');
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
+
+
+// Multi Image
+Route::get('/multi/image', [BrandController::class, 'MultiPic'])
+    ->name('multi.image');
+Route::post('/multi/add', [BrandController::class, 'StoreImg'])
+    ->name('store.image');
