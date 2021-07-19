@@ -3,6 +3,7 @@
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -84,3 +85,10 @@ Route::post('/multi/add', [BrandController::class, 'StoreImg'])
 
 
 
+// Admin All Route
+Route::get('/home/slider', [HomeController::class, 'HomeSlider'])
+    ->name('home.slider');
+Route::get('/add/slider', [HomeController::class, 'AddSlider'])
+    ->name('add.slider');
+Route::post('/store/slider', [HomeController::class, 'StoreSlider'])
+    ->name('store.slider');
