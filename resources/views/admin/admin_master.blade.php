@@ -182,8 +182,9 @@
 
 
         <div class="content-wrapper">
-          <div class="content">						 
-                  @yield('admin')
+          <div class="content">		
+            	{{-- section adminを作ることで表示するコンテンツだけを入れ替えられる。 --}}
+              @yield('admin')
           </div>
         </div>
 
