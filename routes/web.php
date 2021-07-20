@@ -42,8 +42,7 @@ Route::get('/about', function () {
     return view('about');
 })->middleware('check');
 
-Route::get('/contact', [ContactController::class, 'index'])
-    ->name('con');
+Route::get('/contact', [ContactController::class, 'index'])->name('con');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -53,17 +52,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 
     return view('admin.index');
 })->name('dashboard');
-Route::get('/user/logout', [BrandController::class, 'Logout'])
-    ->name('user.logout');
+Route::get('/user/logout', [BrandController::class, 'Logout'])->name('user.logout');
 
 
 
 
 // category controller
-Route::get('/category/all', [CategoryController::class, 'AllCat'])
-    ->name('all.category');
-Route::post('/category/all', [CategoryController::class, 'AddCat'])
-    ->name('store.category');
+Route::get('/category/all', [CategoryController::class, 'AllCat'])->name('all.category');
+Route::post('/category/all', [CategoryController::class, 'AddCat'])->name('store.category');
 Route::get('/category/edit/{id}', [CategoryController::class, 'Edit']);
 Route::put('/category/update/{id}', [CategoryController::class, 'Update']);
 Route::get('/softdelete/category/{id}', [CategoryController::class, 'SoftDelete']);
@@ -72,44 +68,36 @@ Route::get('/pdelete/restore/{id}', [CategoryController::class, 'Pdelete']);
 
 
 // Brand
-Route::get('/brand/all', [BrandController::class, 'AllBrand'])
-    ->name('all.brand');
-Route::post('/brand/add', [BrandController::class, 'StoreBrnad'])
-    ->name('store.brand');
+Route::get('/brand/all', [BrandController::class, 'AllBrand'])->name('all.brand');
+Route::post('/brand/add', [BrandController::class, 'StoreBrnad'])->name('store.brand');
 Route::get('/brand/edit/{id}', [BrandController::class, 'Edit']);
 Route::post('/brand/update/{id}', [BrandController::class, 'Update']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'Delete']);
 
 
 // Multi Image
-Route::get('/multi/image', [BrandController::class, 'MultiPic'])
-    ->name('multi.image');
-Route::post('/multi/add', [BrandController::class, 'StoreImg'])
-    ->name('store.image');
+Route::get('/multi/image', [BrandController::class, 'MultiPic'])->name('multi.image');
+Route::post('/multi/add', [BrandController::class, 'StoreImg'])->name('store.image');
 
 
 
 // Admin All Route
-Route::get('/home/slider', [HomeController::class, 'HomeSlider'])
-    ->name('home.slider');
-Route::get('/add/slider', [HomeController::class, 'AddSlider'])
-    ->name('add.slider');
-Route::post('/store/slider', [HomeController::class, 'StoreSlider'])
-    ->name('store.slider');
+Route::get('/home/slider', [HomeController::class, 'HomeSlider'])->name('home.slider');
+Route::get('/add/slider', [HomeController::class, 'AddSlider'])->name('add.slider');
+Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('store.slider');
+
+// Admin Contact Page Route
+Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
 
 
 //Home About All Route
-Route::get('/home/about', [AboutController::class, 'HomeAbout'])
-    ->name('home.about');
-Route::get('/add/about', [AboutController::class, 'AddAbout'])
-    ->name('add.about');
-Route::post('/store/about', [AboutController::class, 'StoreAbout'])
-    ->name('store.about');
+Route::get('/home/about', [AboutController::class, 'HomeAbout'])->name('home.about');
+Route::get('/add/about', [AboutController::class, 'AddAbout'])->name('add.about');
+Route::post('/store/about', [AboutController::class, 'StoreAbout'])->name('store.about');
 Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::put('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
 
 // Portfolio Page Route
-Route::get('/portfolio', [AboutController::class, 'Portfolio'])
-    ->name('portfolio');
+Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
