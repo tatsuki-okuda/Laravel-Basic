@@ -108,3 +108,8 @@ Route::post('/store/about', [AboutController::class, 'StoreAbout'])
 Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::put('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
+
+
+// Portfolio Page Route
+Route::get('/portfolio', [AboutController::class, 'Portfolio'])
+    ->name('portfolio');
