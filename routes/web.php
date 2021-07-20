@@ -91,6 +91,9 @@ Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('
 Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
 Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
 
+// Home Contact Page Route
+Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
+
 
 //Home About All Route
 Route::get('/home/about', [AboutController::class, 'HomeAbout'])->name('home.about');
@@ -100,6 +103,6 @@ Route::get('/about/edit/{id}', [AboutController::class, 'EditAbout']);
 Route::put('/update/homeabout/{id}', [AboutController::class, 'UpdateAbout']);
 Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 
-
 // Portfolio Page Route
 Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
+
