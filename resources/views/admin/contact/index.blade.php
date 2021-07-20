@@ -7,7 +7,7 @@
     <div class="container">
           <div class="row">
             <h4>Contact Page</h4>
-            <a href="{{ route('add.about') }}">
+            <a href="{{ route('add.contact') }}">
               <button class="btn btn-info">Add Contact</button>
             </a>
             <div class="col-md-12">
@@ -36,7 +36,7 @@
                     @foreach ($contacts as $contact)
                       <tr>
                         <th scope="row">{{ $contacts->firstItem()+$loop->index }}</th>
-                        <td>{{ $contact->adress }}</td>
+                        <td>{{ $contact->address }}</td>
                         <td>{{ $contact->email }}</td>
                         <td>{{ $contact->phone }}</td>
                         <td>

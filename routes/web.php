@@ -88,6 +88,8 @@ Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('stor
 
 // Admin Contact Page Route
 Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
+Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
+Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
 
 
 //Home About All Route
