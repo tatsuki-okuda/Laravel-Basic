@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\ContactForm;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -65,9 +66,45 @@ class ContactController extends Controller
 
 
 
+    /**
+     * Contact
+     *
+     * @return void
+     */
     public function Contact()
     {
         $contact = DB::table('contacts')->first();
         return view('pages.contact', compact('contact'));
     }
+
+
+
+    /**
+     *  User Contact Form
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function ContactForm(Request $request)
+    {
+        ContactForm::insert([
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'created_at' => Carbon::now()
+       ]);
+
+       return Redirect()
+           ->route('contact')
+           ->with('success', 'Your Message Send Succesfully');
+    }
+
+
+    public function AdminMessage()
+    {
+        $messages = ContactForm::latest()->paginate(5);
+        return view('admin.contact.message', compact(('messages')));
+    }
 }
+ 

@@ -90,9 +90,11 @@ Route::post('/store/slider', [HomeController::class, 'StoreSlider'])->name('stor
 Route::get('/admin/contact', [ContactController::class, 'AdminContact'])->name('admin.contact');
 Route::get('/admin/add/contact', [ContactController::class, 'AdminAddContact'])->name('add.contact');
 Route::post('/admin/store/contact', [ContactController::class, 'AdminStoreContact'])->name('store.contact');
+Route::get('/admin/message', [ContactController::class, 'AdminMessage'])->name('admin.message');
 
 // Home Contact Page Route
 Route::get('/contact', [ContactController::class, 'Contact'])->name('contact');
+Route::post('/contact/form', [ContactController::class, 'ContactForm'])->name('contact.form');
 
 
 //Home About All Route
