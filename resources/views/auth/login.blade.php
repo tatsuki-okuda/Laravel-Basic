@@ -61,10 +61,15 @@
                 </a>
               </div>
             </div>
+            {{-- message --}}
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ session('success') }}</strong> 
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="card-body p-5">
-
               <h4 class="text-dark mb-5">Sign In</h4>
-
               <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="row">

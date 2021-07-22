@@ -42,10 +42,8 @@
                 {{ $messages->links() }}
               </div>
             </div>
-
           </div>
       </div>
-
   </div>
 
 @endsection

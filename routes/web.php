@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChangePassController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Models\Multipic;
@@ -108,3 +109,6 @@ Route::get('/about/delete/{id}', [AboutController::class, 'DeleteAbout']);
 // Portfolio Page Route
 Route::get('/portfolio', [AboutController::class, 'Portfolio'])->name('portfolio');
 
+// Change Password and User Profile Route
+Route::get('/user/password', [ChangePassController::class, 'CPassword'])->name('change.password');
+Route::post('/password/update', [ChangePassController::class, 'UpdatePassword'])->name('password.update');
